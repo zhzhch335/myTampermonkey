@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         去除CSDN代码示例登录后复制的限制
 // @namespace    https://github.com/zhzhch335/myTampermonkey
-// @version      1.3
+// @version      1.4
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
@@ -41,7 +41,7 @@
     }
     // 重写另一个登录方法（需要去除行号和版权声明）
     window.mdcp.signin = e => {
-        var preNode = e.path.filter(item => item.tagName == "PRE")[1];
+        var preNode = e.path.filter(item => item.tagName == "CODE")[0];
         // 选中一段文字
         let selection = window.getSelection();
         let range = document.createRange();
