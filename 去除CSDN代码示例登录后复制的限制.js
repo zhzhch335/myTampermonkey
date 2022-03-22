@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         去除CSDN代码示例登录后复制的限制
 // @namespace    https://github.com/zhzhch335/myTampermonkey
-// @version      1.2
+// @version      1.3
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
@@ -26,6 +26,22 @@
     // 重写登录复制方法
     window.hljs.signin = e => {
         var preNode = e.path.filter(item => item.tagName == "PRE")[0];
+        // 选中一段文字
+        let selection = window.getSelection();
+        let range = document.createRange();
+        range.selectNode(preNode);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        // 执行复制命令
+        document.execCommand('copy', false, null);
+        e.target.dataset.title = "复制成功";
+        setTimeout(() => {
+            e.target.dataset.title = "复制全部";
+        },1000);
+    }
+    // 重写另一个登录方法（需要去除行号和版权声明）
+    window.mdcp.signin = e => {
+        var preNode = e.path.filter(item => item.tagName == "PRE")[1];
         // 选中一段文字
         let selection = window.getSelection();
         let range = document.createRange();
