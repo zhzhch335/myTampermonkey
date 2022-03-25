@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         去除CSDN代码示例登录后复制的限制
+// @name         去除CSDN代码登录后复制及全文关注后查看的限制
 // @namespace    https://github.com/zhzhch335/myTampermonkey
-// @version      1.4
+// @version      1.5
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
@@ -55,4 +55,7 @@
             e.target.dataset.title = "复制全部";
         },1000);
     }
+    // 解除关注才能查看全文的限制
+    $('#article_content').removeAttr("style");
+    $('.hide-article-box').remove();
 })();
