@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         去除CSDN代码登录后复制及全文关注后查看的限制
 // @namespace    https://github.com/zhzhch335/myTampermonkey
-// @version      1.5
+// @version      1.6
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
@@ -42,6 +42,8 @@
         }
         // 重写另一个登录方法（需要去除行号和版权声明）
         window.mdcp.signin = e => {
+            // 避免拖动选择代码时直接触发了复制全部
+            if (!e.target.className.includes("hljs-button")) return;
             var preNode = e.path.filter(item => item.tagName == "CODE")[0];
             // 选中一段文字
             let selection = window.getSelection();
