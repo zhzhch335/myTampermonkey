@@ -5,6 +5,7 @@
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
+// @match        http*://*.blog.csdn.net/article/details/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=csdn.net
 // @grant        none
 // ==/UserScript==
