@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         去除CSDN代码登录后复制及全文关注后查看的限制
 // @namespace    https://github.com/zhzhch335/myTampermonkey
-// @version      1.6
+// @version      1.7
 // @description  解决未登录时CSDN不能复制代码的问题
 // @author       zhzhch335
 // @match        http*://blog.csdn.net/*/article/details/*
